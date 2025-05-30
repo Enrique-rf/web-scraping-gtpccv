@@ -15,10 +15,10 @@ class VehiculoController extends Controller
     public function obtenerToken()
     {
         return Cache::remember('token', now()->addHours(6), function () {
-            $response = Http::post('https://gtpmovil.com/apirastreo/v1/auth/login', [
-                'name' => 'mcabral',
-                'clave' => 'mtaller',
-            ]);
+           $response = Http::post(config('services.gtp.url') . '/auth/login', [
+            'name' => config('services.gtp.username'),
+            'clave' => config('services.gtp.password'),
+        ]);
 
             if ($response->successful()) {
                 $data = $response->json();

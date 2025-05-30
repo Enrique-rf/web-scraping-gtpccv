@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'gtp' => [
+    'username' => env('GTP_API_USERNAME'),
+    'password' => env('GTP_API_PASSWORD'),
+    'url' => env('GTP_API_URL', 'https://gtpmovil.com/apirastreo/v1'),
+],
+
+
 ];
