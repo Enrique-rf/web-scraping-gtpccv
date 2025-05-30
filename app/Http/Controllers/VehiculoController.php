@@ -83,7 +83,7 @@ class VehiculoController extends Controller
         $odometro = $this->obtenerOdometro($request->vehiculo_id);
         if ($odometro !== null) {
             Vehiculo::where('vehiculo_id', $request->vehiculo_id)
-                ->update(['km_inicial' => $odometro]); // Dividir por 1000 para convertir a km
+                ->update(['km_inicial' => $odometro /1000]); // Dividir por 1000 para convertir a km
         } else {
             return redirect()->back()->withErrors(['error' => 'No se pudo obtener el odómetro del vehículo.']);
         }

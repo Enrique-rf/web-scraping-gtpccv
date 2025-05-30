@@ -14,7 +14,7 @@ class ActualizarKmRecorridos extends Command
      *
      * @var string
      */
-    protected $signature = 'Vehiculos:actualizar-km-recorridos';
+    protected $signature = 'ActualizarKmRecorridos';
 
     /**
      * The console command description.
@@ -85,7 +85,7 @@ class ActualizarKmRecorridos extends Command
                 continue;
             }
 
-            $vehiculo->km_recorridos = $odometroTotal - $vehiculo->km_inicial;
+            $vehiculo->km_recorridos = ($odometroTotal / 1000) - $vehiculo->km_inicial;
             $vehiculo->save();
 
             $this->info("✔ Vehículo ID {$vehiculo->id}: KM recorridos actualizados.");
@@ -94,7 +94,7 @@ class ActualizarKmRecorridos extends Command
         }
     }
 
-    $this->info("✅ Actualización finalizada.");
+    $this->info('Tarea ejecutada correctamente a las ' . now());
     return Command::SUCCESS;
     }
 }

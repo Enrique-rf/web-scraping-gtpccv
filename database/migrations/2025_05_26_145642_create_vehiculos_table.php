@@ -16,9 +16,9 @@ return new class extends Migration
             $table->integer('vehiculo_id')->unique();
             $table->string('nombre');
             $table->string('matricula')->unique();
-            $table->decimal('km_inicial', 10, 2)->default(0);
-            $table->integer('km_real')->default(0);
-            $table->decimal('km_recorridos')->default(0);
+            $table->bigInteger('km_inicial')->default(0);
+            $table->bigInteger('km_real')->default(0);
+            $table->bigInteger('km_recorridos')->default(0);
             $table->timestamps();
         });
     }
