@@ -27,6 +27,12 @@
                         <td>{{ $vehiculo->matricula }}</td>
                         <td>{{ $vehiculo->km_real }}</td>
                         <td>{{ $vehiculo->km_recorridos }}</td>
+                        <form action="{{ route('vehiculos.reset', $vehiculo->id) }}" method="post">
+                            @csrf
+                            <td>
+                               <button>Reset </button> 
+                            </td>
+                        </form>
                     </tr>
                 @endforeach                
             </tbody>

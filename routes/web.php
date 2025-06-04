@@ -17,11 +17,13 @@ Route::get('/token', [VehiculoController::class, 'obtenerToken'])->name('vehicul
 Route::get('/recorrido', [VehiculoController::class, 'mostrarRecorrido'])->name('vehiculos.recorrido');
 
 Route::get('/prueba', function () {
-    $response = Http::withToken('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c3VhcmlvIjoibWNhYnJhbCIsImNvZF9jbGllbnRlIjozMzEsImV4cCI6MTc0ODU0NjY1NDY1OX0.P1mw5MZxy4dU-TKreX9qONioA6S9sm-HrhkYBAo2tmmNya8MdR5NzOT0DVClNmQwIGpeOxo5LYm0oUauu0HTiw')
-        ->get('https://gtpmovil.com/apirastreo/v1/clientes/control-flota/datos-utiles/3773');
+    $response = Http::withToken('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c3VhcmlvIjoibWNhYnJhbCIsImNvZF9jbGllbnRlIjozMzEsImV4cCI6MTc0OTIyODYzMTE2NH0.K9vmovAXTwgHlggM_90spunxTbt2fpkff6gIpUmfSb2ihYzvhjoREwHfrD2s8YsnkdpxL4yRq_SDTm3l4AHIVw')
+        ->get('https://gtpmovil.com/apirastreo/v1/clientes/control-flota/datos-utiles/1140');
 
     return $response->json();
 });
+
+Route::post('vehiculos/{vehiculo}/reset', [VehiculoController::class, 'reset'])->name('vehiculos.reset');
 
 Route::get('/vehiculos', [VehiculoController::class, 'index']);
 Route::get('/vehiculos/create', [VehiculoController::class, 'create'])->name('vehiculos.create');

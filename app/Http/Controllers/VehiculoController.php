@@ -90,6 +90,27 @@ class VehiculoController extends Controller
 
         return redirect('/vehiculos')->with('success', 'Vehículo creado exitosamente.');
     }
+
+    public function reset(Vehiculo $vehiculo)
+    {
+        $tokenData= $this->obtenerToken();
+        $token = $tokenData['token'];
+        if(!$token) {
+            return 'Error al obtener el token';
+        }
+        $response = Http::withToken($token)
+            ->post("https://gtpmovil.com/apirastreo/v1/clientes/control-flota/datos-utiles/{$vehiculo->vehiculo_id}");
+        if (!$response->successful()) {
+            return response()->json(['error' => 'No se pudo obtener el odómetro del vehículo.']);
+        }
+        $odometroTotal = $response->json()['odometroTotal'] ?? null;
+
+        $vehiculo->km_inicial = $odometroTotal / 1000;
+        $vehiculo->km_real = $vehiculo->km_real + $vehiculo->km_recorridos;
+        $vehiculo->km_recorridos = 0;
+        $vehiculo->save();
+        return redirect('/vehiculos')->with('success', 'Odómetro del vehículo actualizado exitosamente.');
+    }
         
     /**
      * Display the specified resource.
